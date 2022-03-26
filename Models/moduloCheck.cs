@@ -23,7 +23,7 @@ namespace FizzBuzzWeb.Models
 
 			if (number % firstDiv == 0 && number % secondDiv == 0)
 			{
-				ErrorMessage = "FizzBuzz";
+				ErrorMessage  = "FizzBuzz";
 				return false;
 			}
 			if (number % firstDiv == 0)

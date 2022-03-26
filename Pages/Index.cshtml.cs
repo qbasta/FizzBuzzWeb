@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using FizzBuzzWeb.Models;
-
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 namespace FizzBuzzWeb.Pages;
 
 public class IndexModel : PageModel
@@ -28,12 +29,13 @@ public class IndexModel : PageModel
     }
     public IActionResult OnPost()
     {
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
         {
-            return Page();
+            HttpContext.Session.SetString("Data",
+            JsonConvert.SerializeObject(FizzBuzz));
+            return RedirectToPage("./SavedInSession");
         }
-        return RedirectToPage("./Privacy");
+        return Page();
     }
-
 }
 
